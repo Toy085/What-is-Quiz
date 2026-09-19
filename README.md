@@ -1,3 +1,4 @@
+https://hackatime-badge.hackclub.com/U09M6CNTTML/Jeopardy?label=hackatime-badge
 ## Developing
 
 Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
