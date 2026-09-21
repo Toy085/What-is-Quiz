@@ -1,12 +1,12 @@
 <script lang="ts">
     let props = $props();
-    
+
     const cells = Array.from({ length: 25 }, (_, i) => i);
 </script>
 
 <div class="gameboard" id="gameBoard">
     {#each cells as index}
-        <div class="cell bg-blue-500 hover:bg-blue-700" data-index={index}></div>
+        <div class="cell bg-blue-500 hover:bg-blue-700" data-index={index}><p class="text-1xl font-normal text-black">{(index%5)*100+100}$</p></div>
     {/each}
 </div>
 
