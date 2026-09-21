@@ -44,5 +44,6 @@
         align-items: center;
         font-size: 2rem;
         cursor: pointer;
+        border-radius: var(--radius-lg);
     }
 </style>
