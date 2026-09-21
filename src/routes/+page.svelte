@@ -15,4 +15,7 @@
         margin: 0;
         padding: 20px;
     }
+    button {
+        cursor: pointer;
+    }
 </style>
