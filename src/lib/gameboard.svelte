@@ -1,7 +1,19 @@
 <script lang="ts">
-  let props = $props();
+  interface Props {
+    creation: boolean;
+  }
+  let { creation = false } = $props();
 
   const cells = Array.from({ length: 25 }, (_, i) => i);
+
+  function editCell(index: number): void {
+    if (!creation) {
+      console.log("Not in Creation mode");
+      return;
+    }
+    console.log("In Creation mode");
+    return;
+  }
 </script>
 
 <div class="gameboard-container">
@@ -15,11 +27,11 @@
 
   <div class="gameboard" id="gameBoard">
     {#each cells as index}
-      <div class="cell bg-blue-500 hover:bg-blue-700" data-index={index}>
+      <button type="button" class="cell bg-blue-500 hover:bg-blue-700" data-index={index} onclick={() => editCell(index)}>
         <p class="text-xl font-normal text-white">
           ${(Math.floor(index / 5) + 1) * 100}
         </p>
-      </div>
+      </button>
     {/each}
   </div>
 </div>
