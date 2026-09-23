@@ -45,6 +45,7 @@
     flex-direction: column;
     align-items: center;
     gap: 10px;
+    position: relative;
   }
 
   .gameboard-titles,
@@ -82,6 +83,10 @@
     height: 65vh;
     width: 65vw;
     z-index: 1;
+    position: fixed;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
     transition: all 500ms;
   }
 </style>
