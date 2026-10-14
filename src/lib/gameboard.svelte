@@ -10,20 +10,18 @@
   const cells = Array.from({ length: 25 }, (_, i) => i);
 
   function editCell(index: number): void {
-    if (!creation) {
-      console.log("Not in Creation mode");
-      return;
-    }
     let cell = cells.at(index);
     activeCell = activeCell === index ? null : index;
     return;
   }
-    function openCell(index: number): void {
-    if (creation) {editCell(index)}
+
+  function openCell(index: number): void {
+    if (creation) {editCell(index); return;}
     let cell = cells.at(index);
     activeCell = activeCell === index ? null : index;
     return;
   }
+
   function closeEditCell(): void {
     activeCell = null
     editTextCell.value = ""
