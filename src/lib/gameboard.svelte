@@ -5,6 +5,7 @@
   let { creation = false } = $props();
 
   let activeCell = $state<number | null>(null);
+  let editTextCell = $state()
 
   const cells = Array.from({ length: 25 }, (_, i) => i);
 
@@ -16,6 +17,10 @@
     let cell = cells.at(index);
     activeCell = activeCell === index ? null : index;
     return;
+  }
+  function closeEditCell(): void {
+    activeCell = null
+    editTextCell.value = ""
   }
 </script>
 
@@ -41,7 +46,7 @@
 
 <div class=" flex justify-center items-center rounded-lg w-[70vw] h-[60vh] absolute top-[15%] left-[15%] bg-blue-500 p-5" class:invisible={activeCell === null}>
   {#if creation}
-  <input type="text" class="w-full h-full m-5">
+  <input type="text" bind:this={editTextCell} class="w-full h-full m-5">
   {/if}
-  <button class=" absolute top-0 right-0" onclick={() => activeCell = null}>Close</button> <!--Replace with icon-->
+  <button class=" absolute top-0 right-0" onclick={() => closeEditCell()}>Close</button> <!--Replace with icon-->
 </div>
