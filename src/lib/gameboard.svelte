@@ -22,7 +22,7 @@
 <div class="gameboard-container">
   <div class="gameboard-titles">
     {#each Array(5) as index}
-      <div class="cell-title bg-blue-700 hover:bg-blue-900" data-index={index}>
+      <div class="flex justify-center items-center cursor-pointer rounded-lg w-50 h-12.5 bg-blue-700 hover:bg-blue-900" data-index={index}>
         <h2 class="text-2xl font-bold text-white">Lorem</h2>
       </div>
     {/each}
@@ -58,15 +58,5 @@
 
   .gameboard {
     grid-template-rows: repeat(5, 100px);
-  }
-
-  .cell-title {
-    width: 200px;
-    height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    border-radius: var(--radius-lg);
   }
 </style>
