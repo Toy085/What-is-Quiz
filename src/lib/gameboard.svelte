@@ -38,3 +38,9 @@
     {/each}
   </div>
 </div>
+
+<div class="invisible flex justify-center items-center rounded-lg w-[70vw] h-[60vh] absolute top-[15%] left-[15%] bg-blue-500 p-5">
+  {#if creation}
+  <input type="text" class="w-full h-full m-5">
+  {/if}
+</div>
