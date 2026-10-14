@@ -13,4 +13,9 @@
 
 <style>
 	@reference "tailwindcss";
+	:global(body) {
+		background-color: lightblue;
+        margin: 0;
+        padding: 20px;
+	}
 </style>

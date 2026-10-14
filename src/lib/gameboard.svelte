@@ -30,7 +30,7 @@
 
   <div class="gameboard" id="gameBoard">
     {#each cells as index}
-      <button type="button" class="cell bg-blue-500 hover:bg-blue-700" class:edit-cell={activeCell === index} data-index={index} onclick={() => editCell(index)}>
+      <button type="button" class="flex justify-center items-center cursor-pointer rounded-lg w-50 h-25 bg-blue-500 hover:bg-blue-700" class:edit-cell={activeCell === index} data-index={index} onclick={() => editCell(index)}>
         <p class="text-xl font-normal text-white">
           ${(Math.floor(index / 5) + 1) * 100}
         </p>
@@ -68,25 +68,5 @@
     align-items: center;
     cursor: pointer;
     border-radius: var(--radius-lg);
-  }
-
-  .cell {
-    width: 200px;
-    height: 100px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    border-radius: var(--radius-lg);
-  }
-  .edit-cell {
-    height: 65vh;
-    width: 65vw;
-    z-index: 1;
-    position: fixed;
-    transform: translate(-50%, -50%);
-    top: 50%;
-    left: 50%;
-    transition: all 500ms;
   }
 </style>
