@@ -55,6 +55,6 @@
   <input type="text" bind:this={editTextCell} class="w-full h-full m-5">
   <button class=" absolute top-0 right-0" onclick={() => closeEditCell()}>Close</button> <!--Replace with icon-->
   {:else if !creation}
-  <p>{cellDescription}</p>
+  <p>{cellDescription[activeCell != null ? activeCell : 0]}</p>
   {/if}
 </div>
