@@ -11,7 +11,7 @@
   };
 
   let activeCell = $state<number | null>(null);
-  let editTextCell = $state()
+  let editTextCell: any = $state()
   let currentCellType = $state<number>(cellTypes.text);
 
   const cells = Array.from({ length: 25 }, (_, i) => i);
