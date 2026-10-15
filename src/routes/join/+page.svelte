@@ -8,5 +8,5 @@
 </script>
 
 {#if ingame}
-<Gameboard cellDescription={cellDes}/>
+    <Gameboard cellDescription={cellDes}/>
 {/if}
