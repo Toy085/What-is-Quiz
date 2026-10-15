@@ -1,4 +1,5 @@
 <script lang="ts">
+  import closeIcon from "$lib/assets/icons/close_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg"
   interface Props {
     creation: boolean;
   }
@@ -51,7 +52,9 @@
 <div class=" flex justify-center items-center rounded-lg w-[70vw] h-[60vh] absolute top-[15%] left-[15%] bg-blue-500 p-5" class:invisible={activeCell === null}>
   {#if creation}
     <textarea maxlength="125" bind:this={editTextCell} class="w-full h-full font-bold text-7xl text-center resize-none bg-transparent"></textarea>
-    <button class="absolute top-0 right-0" onclick={() => closeEditCell()}>Close</button> <!--Replace with icon-->
+    <button class="absolute top-0 right-0" onclick={() => closeEditCell()}>
+      <img alt="close" src={closeIcon} class="w-12">
+    </button>
   {:else if !creation}
     <p class="font-bold text-7xl text-center">{cellDescription[activeCell != null ? activeCell : 0]}</p>
   {/if}
