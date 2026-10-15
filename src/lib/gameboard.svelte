@@ -50,9 +50,9 @@
 
 <div class=" flex justify-center items-center rounded-lg w-[70vw] h-[60vh] absolute top-[15%] left-[15%] bg-blue-500 p-5" class:invisible={activeCell === null}>
   {#if creation}
-  <input type="text" maxlength="125" bind:this={editTextCell} class="w-full h-full m-5 font-bold text-7xl text-center">
-  <button class="absolute top-0 right-0" onclick={() => closeEditCell()}>Close</button> <!--Replace with icon-->
+    <textarea maxlength="125" bind:this={editTextCell} class="w-full h-full font-bold text-7xl text-center resize-none bg-transparent"></textarea>
+    <button class="absolute top-0 right-0" onclick={() => closeEditCell()}>Close</button> <!--Replace with icon-->
   {:else if !creation}
-  <p class="font-bold text-7xl text-center">{cellDescription[activeCell != null ? activeCell : 0]}</p>
+    <p class="font-bold text-7xl text-center">{cellDescription[activeCell != null ? activeCell : 0]}</p>
   {/if}
 </div>
