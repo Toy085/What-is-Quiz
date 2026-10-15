@@ -50,7 +50,7 @@
   }
 </script>
 
-<div class="flex flex-col items-center relative gap-2.5">
+<div class="flex flex-col items-center relative gap-2.5 m-5">
   <div class="grid gap-2.5 justify-center grid-cols-[repeat(5,200px)]">
     {#each titleCells as index}
       <button class="flex justify-center items-center cursor-pointer rounded-lg w-50 h-min-13 h-max-25 bg-blue-700 hover:bg-blue-900" data-index={index} onclick={() => openCell(index, cellTypes.title)}>
