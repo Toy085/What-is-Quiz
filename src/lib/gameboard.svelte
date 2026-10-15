@@ -5,20 +5,42 @@
   }
   let { creation = false, cellDescription = Array<String> } = $props();
 
+  const cellTypes = {
+    text: 0,
+    title: 1,
+  };
+
   let activeCell = $state<number | null>(null);
+  let activeCellType = cellTypes.text;
   let editTextCell = $state()
+  let currentCellType = $state<number>(0);
 
   const cells = Array.from({ length: 25 }, (_, i) => i);
+  const titleCells = Array.from({ length: 5 }, (_, i) => i);
 
-  function editCell(index: number): void {
-    let cell = cells.at(index);
+  function editCell(index: number, cellType: number): void {
+    currentCellType = cellType
+    if (cellType === cellTypes.text) {
+      let cell = cells.at(index);
+    } 
+    else {
+      let cell = titleCells.at(index);
+    }
     activeCell = activeCell === index ? null : index;
     return;
   }
 
-  function openCell(index: number): void {
-    if (creation) {editCell(index); return;}
-    let cell = cells.at(index);
+  function openCell(index: number, cellType: number): void {
+    currentCellType = cellType
+    if (creation) {editCell(index, cellType); return;}
+
+    if (cellType === cellTypes.text) {
+      let cell = cells.at(index);
+    } 
+    else {
+      let cell = titleCells.at(index);
+    }
+
     activeCell = activeCell === index ? null : index;
     return;
   }
@@ -31,16 +53,16 @@
 
 <div class="flex flex-col items-center relative gap-2.5">
   <div class="grid gap-2.5 justify-center grid-cols-[repeat(5,200px)]">
-    {#each Array(5) as index}
-      <div class="flex justify-center items-center cursor-pointer rounded-lg w-50 h-12.5 bg-blue-700 hover:bg-blue-900" data-index={index}>
+    {#each titleCells as index}
+      <button class="flex justify-center items-center cursor-pointer rounded-lg w-50 h-12.5 bg-blue-700 hover:bg-blue-900" data-index={index} onclick={() => openCell(index, cellTypes.title)}>
         <h2 class="text-2xl font-bold text-white">Lorem</h2>
-      </div>
+      </button>
     {/each}
   </div>
 
   <div class="grid gap-2.5 justify-center grid-cols-[repeat(5,200px)]" id="gameBoard">
     {#each cells as index}
-      <button type="button" class="flex justify-center items-center cursor-pointer rounded-lg w-50 h-25 bg-blue-500 hover:bg-blue-700" class:edit-cell={activeCell === index} data-index={index} onclick={() => openCell(index)}>
+      <button type="button" class="flex justify-center items-center cursor-pointer rounded-lg w-50 h-25 bg-blue-500 hover:bg-blue-700" data-index={index} onclick={() => openCell(index, cellTypes.text)}>
         <p class="text-xl font-normal text-white">
           ${(Math.floor(index / 5) + 1) * 100}
         </p>
@@ -49,9 +71,22 @@
   </div>
 </div>
 
-<div class=" flex justify-center items-center rounded-lg w-[70vw] h-[60vh] absolute top-[15%] left-[15%] bg-blue-500 p-5" class:invisible={activeCell === null}>
+<!--Big Cell-->
+<div class=" flex justify-center items-center rounded-lg w-[70vw] h-[60vh] transform-[translate(-50%,-50%)] absolute top-[40%] left-[50%] bg-blue-500 p-5" class:invisible={activeCell === null || currentCellType != cellTypes.text}>
   {#if creation}
     <textarea maxlength="125" bind:this={editTextCell} class="w-full h-full font-bold text-7xl text-center resize-none bg-transparent"></textarea>
+    <button class="absolute top-0 right-0" onclick={() => closeEditCell()}>
+      <img alt="close" src={closeIcon} class="w-12">
+    </button>
+  {:else if !creation}
+    <p class="font-bold text-7xl text-center">{cellDescription[activeCell != null ? activeCell : 0]}</p>
+  {/if}
+</div>
+
+<!--Big-small Cell-->
+<div class=" flex justify-center items-center rounded-lg w-[60vw] h-[40vh] transform-[translate(-50%,-50%)] absolute top-[40%] left-[50%] bg-blue-500 p-5" class:invisible={activeCell === null || currentCellType != cellTypes.title}>
+  {#if creation}
+    <textarea maxlength="40" bind:this={editTextCell} class="w-full h-[50%] font-bold text-7xl text-center resize-none bg-transparent"></textarea>
     <button class="absolute top-0 right-0" onclick={() => closeEditCell()}>
       <img alt="close" src={closeIcon} class="w-12">
     </button>
