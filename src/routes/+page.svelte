@@ -1,5 +1,4 @@
 <script lang="ts">
-    let fileInput = document.getElementById("jsonInput")
     function quizUpload() {
         // Add funconality
     }
