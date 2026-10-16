@@ -5,9 +5,7 @@
     QuestionText: Array<string>;
     CategoriesText: Array<string>;
   }
-  let { creation = false, QuestionText, CategoriesText } = $props();
-
-  CategoriesText ??= ["Lorem Ipsum sit"];
+  let { creation = false, QuestionText = ["Lorem Ipsum sit"], CategoriesText = ["Lorem Ipsum sit"]} = $props();
 
   const cellTypes = {
     text: 0,
