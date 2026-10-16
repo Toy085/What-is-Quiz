@@ -1,5 +1,6 @@
 <script lang="ts">
     import Gameboard from '$lib/gameboard.svelte';
+    import Returnbutton from '$lib/assets/returnbutton.svelte';
 
     let QuizData = $state();
 
@@ -16,3 +17,5 @@
 <Gameboard creation={true}/>
 
 <button onclick={saveQuizTemp} class="bg-blue-500 hover:bg-blue-700 m-auto block text-white font-bold p-2 rounded cursor-pointer">Save Quiz</button>
+
+<Returnbutton />
