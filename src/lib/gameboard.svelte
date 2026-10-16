@@ -2,8 +2,12 @@
   import closeIcon from "$lib/assets/icons/close_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg"
   interface Props {
     creation: boolean;
+    QuestionText: Array<string>;
+    CategoriesText: Array<string>;
   }
-  let { creation = false, cellDescription = Array<String> } = $props();
+  let { creation = false, QuestionText, CategoriesText } = $props();
+
+  CategoriesText ??= ["Lorem Ipsum sit"];
 
   const cellTypes = {
     text: 0,
@@ -54,7 +58,7 @@
   <div class="grid gap-2.5 justify-center grid-cols-[repeat(5,200px)]">
     {#each titleCells as index}
       <button class="flex justify-center items-center cursor-pointer rounded-lg w-50 h-min-13 h-max-25 bg-blue-700 hover:bg-blue-900" data-index={index} onclick={() => openCell(index, cellTypes.title)}>
-        <h2 class="text-xl font-bold text-white m-1.5">Lorem, ipsum dolor.</h2>
+        <h2 class="text-xl font-bold text-white m-1.5">{CategoriesText[index] != null ? CategoriesText[index] : CategoriesText[0]}</h2>
       </button>
     {/each}
   </div>
@@ -78,7 +82,7 @@
       <img alt="close" src={closeIcon} class="w-12">
     </button>
   {:else if !creation}
-    <p class="font-bold text-7xl text-center">{cellDescription[activeCell != null ? activeCell : 0]}</p>
+    <p class="font-bold text-7xl text-center">{QuestionText[activeCell != null ? activeCell : 0]}</p>
   {/if}
 </div>
 
@@ -89,7 +93,6 @@
     <button class="absolute top-0 right-0" onclick={() => closeEditCell()}>
       <img alt="close" src={closeIcon} class="w-12">
     </button>
-  {:else if !creation}
-    <p class="font-bold text-7xl text-center">{cellDescription[activeCell != null ? activeCell : 0]}</p>
+    <!-- No need for expanding Categories -->
   {/if}
 </div>
