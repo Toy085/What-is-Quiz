@@ -52,7 +52,7 @@
 <div class="flex flex-col items-center relative gap-2.5 m-5">
   <div class="grid gap-2.5 justify-center grid-cols-[repeat(5,200px)]">
     {#each titleCells as index}
-      <button class="flex justify-center items-center cursor-pointer rounded-lg w-50 h-min-13 h-max-25 bg-blue-700 transition-all ease-in-out delay-50" class:hover:bg-blue-900={creation} data-index={index} onclick={() => openCell(index, cellTypes.title)}>
+      <button class="flex justify-center items-center rounded-lg w-50 h-min-13 h-max-25 bg-blue-700 transition-all ease-in-out delay-50" class:hover:bg-blue-900={creation} class:cursor-pointer={creation} data-index={index} onclick={() => openCell(index, cellTypes.title)}>
         <h2 class="text-xl font-bold text-white m-1.5">{CategoriesText[index] != null ? CategoriesText[index] : CategoriesText[0]}</h2>
       </button>
     {/each}
