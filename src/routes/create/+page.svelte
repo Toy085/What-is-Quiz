@@ -10,4 +10,4 @@
 
 <Gameboard creation={true}/>
 
-<button onclick={saveQuiz} class="bg-blue-500 hover:bg-blue-700 m-auto text-white font-bold p-2 rounded cursor-pointer">Save Quiz</button>
+<button onclick={saveQuiz} class="bg-blue-500 hover:bg-blue-700 m-auto block text-white font-bold p-2 rounded cursor-pointer">Save Quiz</button>
