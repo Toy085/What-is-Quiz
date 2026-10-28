@@ -26,4 +26,5 @@
         <button onclick={creationMode = true} class="bg-blue-500 hover:bg-blue-700 m-auto block text-white font-bold p-2 rounded cursor-pointer">Create a new Quiz</button>
     </div>
 {/if}
+
 <Returnbutton />
