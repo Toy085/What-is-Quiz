@@ -1,6 +1,6 @@
 <script lang="ts">
     function quizUpload() {
-        // Add funconality
+        //localStorage.setItem('localQuiz', JSON.stringify(""));
     }
 </script>
 
