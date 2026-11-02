@@ -2,11 +2,19 @@
     import Gameboard from '$lib/gameboard.svelte';
     import Returnbutton from '$lib/assets/returnbutton.svelte';
 
-    let QuizData = $state();
+    let categoriesText = $state<string[]>(Array(5).fill("Lorem"));
+    let questionText = $state<string[]>(Array(25).fill(""));
     let creationMode: boolean = $state(false);
 
+    if (localStorage.getItem('tempQuiz')) {
+        const tempQuiz = JSON.parse(localStorage.getItem('tempQuiz') || '{}');
+        categoriesText = tempQuiz.categoriesText || Array(5).fill("Lorem");
+        questionText = tempQuiz.questionText || Array(25).fill("");
+    }
+
     function saveQuizTemp() {
-        // Add funconality
+        const quizData = { categoriesText, questionText };
+        localStorage.setItem('tempQuiz', JSON.stringify(quizData));
     }
     function exportQuiz() {
         // Add funconality
@@ -15,7 +23,7 @@
 
 <h1 class="text-2xl font-bold m-4 text-center">Hello!</h1>
 {#if creationMode}
-    <Gameboard creation={true}/>
+    <Gameboard creation={true} bind:QuestionText={questionText} bind:CategoriesText={categoriesText} />
 
     <button onclick={saveQuizTemp} class="bg-blue-500 hover:bg-blue-700 m-auto block text-white font-bold p-2 rounded cursor-pointer">Save Quiz</button>
     <button onclick={exportQuiz} class="bg-blue-500 hover:bg-blue-700 m-auto block text-white font-bold p-2 mt-2 rounded cursor-pointer">Export Quiz</button>

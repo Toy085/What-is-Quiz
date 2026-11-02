@@ -1,11 +1,13 @@
 <script lang="ts">
   import closeIcon from "$lib/assets/icons/close_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg"
+
   interface Props {
     creation: boolean;
     QuestionText: Array<string>;
     CategoriesText: Array<string>;
   }
-  let { creation = false, QuestionText = ["Lorem Ipsum sit"], CategoriesText = ["Lorem Ipsum sit"]} = $props();
+
+  let { creation = false, QuestionText = $bindable(Array(25).fill("")), CategoriesText = $bindable(Array(5).fill("Lorem"))} = $props();
 
   const cellTypes = {
     text: 0,
@@ -13,7 +15,6 @@
   };
 
   let activeCell = $state<number | null>(null);
-  let editTextCell: any = $state()
   let currentCellType = $state<number>(cellTypes.text);
 
   const cells = Array.from({ length: 25 }, (_, i) => i);
@@ -44,7 +45,6 @@
   }
 
   function closeEditCell(): void {
-    editTextCell.value = ""
     activeCell = null
   }
 </script>
@@ -72,7 +72,7 @@
 <!--Big Cell-->
 <div class="flex justify-center items-center rounded-lg w-[70vw] h-[60vh] transform-[translate(-50%,-50%)] absolute top-[40%] left-[50%] bg-blue-600 p-5" class:invisible={activeCell === null || currentCellType === cellTypes.title}>
   {#if creation}
-    <textarea maxlength="125" bind:this={editTextCell} class="w-full h-full font-bold text-7xl text-center resize-none bg-transparent"></textarea>
+    <textarea maxlength="125" bind:value={QuestionText[activeCell != null ? activeCell : 0]} class="w-full h-full font-bold text-7xl text-center resize-none bg-transparent"></textarea>
     <button class="absolute top-0 right-0" onclick={() => closeEditCell()}>
       <img alt="close" src={closeIcon} class="w-12">
     </button>
@@ -84,7 +84,7 @@
 <!--Big-small Cell-->
 <div class="flex justify-center items-center rounded-lg w-[60vw] h-[30vh] transform-[translate(-50%,-50%)] absolute top-[40%] left-[50%] bg-blue-800 p-5" class:invisible={activeCell === null || currentCellType === cellTypes.text}>
   {#if creation}
-    <textarea maxlength="40" bind:this={editTextCell} class="w-full h-[20vh] font-bold text-7xl text-center resize-none bg-transparent"></textarea>
+    <textarea maxlength="40" bind:value={CategoriesText[activeCell != null ? activeCell : 0]} class="w-full h-[20vh] font-bold text-7xl text-center resize-none bg-transparent"></textarea>
     <button class="absolute top-0 right-0" onclick={() => closeEditCell()}>
       <img alt="close" src={closeIcon} class="w-12">
     </button>
