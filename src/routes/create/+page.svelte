@@ -18,6 +18,7 @@
     <Gameboard creation={true}/>
 
     <button onclick={saveQuizTemp} class="bg-blue-500 hover:bg-blue-700 m-auto block text-white font-bold p-2 rounded cursor-pointer">Save Quiz</button>
+    <button onclick={exportQuiz} class="bg-blue-500 hover:bg-blue-700 m-auto block text-white font-bold p-2 mt-2 rounded cursor-pointer">Export Quiz</button>
 {:else}
     <div class="flex flex-row m-50">
         <input type="file" id="jsonInput" accept=".json" onchange={quizUpload} class="hidden">
