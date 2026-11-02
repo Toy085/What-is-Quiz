@@ -6,7 +6,7 @@
     let questionText = $state<string[]>(Array(25).fill(""));
     let creationMode: boolean = $state(false);
 
-    if (localStorage.getItem('tempQuiz')) {
+    if (localStorage?.getItem('tempQuiz')) {
         const tempQuiz = JSON.parse(localStorage.getItem('tempQuiz') || '{}');
         categoriesText = tempQuiz.categoriesText || Array(5).fill("Lorem");
         questionText = tempQuiz.questionText || Array(25).fill("");
@@ -17,7 +17,15 @@
         localStorage.setItem('tempQuiz', JSON.stringify(quizData));
     }
     function exportQuiz() {
-        // Add funconality
+        const quizData = { categoriesText, questionText };
+        let tempQuiz = JSON.stringify(quizData);
+        const blob = new Blob([tempQuiz], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'quiz.json';
+        a.click();
+        URL.revokeObjectURL(url);
     }
 </script>
 
