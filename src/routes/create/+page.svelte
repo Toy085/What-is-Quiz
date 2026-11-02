@@ -28,6 +28,13 @@
         a.click();
         URL.revokeObjectURL(url);
     }
+    function clearQuiz() {
+        if(!window.confirm("Doing this will permantly delete your quiz.")) {return;}
+        categoriesText = Array(5).fill("Lorem");
+        questionText = Array(25).fill("");
+        const quizData = { categoriesText, questionText };
+        localStorage.setItem('localQuiz', JSON.stringify(quizData));
+    }
 </script>
 
 <h1 class="text-2xl font-bold m-4 text-center">Hello!</h1>
@@ -37,6 +44,7 @@
 
     <button onclick={saveQuizTemp} class="bg-blue-500 hover:bg-blue-700 m-auto block text-white font-bold p-2 rounded cursor-pointer">Save Quiz</button>
     <button onclick={exportQuiz} class="bg-blue-500 hover:bg-blue-700 m-auto block text-white font-bold p-2 mt-2 rounded cursor-pointer">Export Quiz</button>
+    <button onclick={clearQuiz} class="bg-blue-500 hover:bg-blue-700 m-auto block text-white font-bold p-2 mt-2 rounded cursor-pointer">Clear Quiz</button>
 {:else}
     <div class="flex flex-row m-5 justify-center items-center gap-5">
         <input type="file" id="jsonInput" accept=".WhatIsQuiz" onchange={quizUpload} class="hidden">
