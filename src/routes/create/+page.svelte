@@ -42,9 +42,11 @@
 {#if creationMode}
     <Gameboard creation={true} bind:QuestionText={questionText} bind:CategoriesText={categoriesText} />
 
-    <button onclick={saveQuizTemp} class="bg-blue-500 hover:bg-blue-700 m-auto block text-white font-bold p-2 rounded cursor-pointer">Save Quiz</button>
-    <button onclick={exportQuiz} class="bg-blue-500 hover:bg-blue-700 m-auto block text-white font-bold p-2 mt-2 rounded cursor-pointer">Export Quiz</button>
-    <button onclick={clearQuiz} class="bg-blue-500 hover:bg-blue-700 m-auto block text-white font-bold p-2 mt-2 rounded cursor-pointer">Clear Quiz</button>
+    <div class="flex justify-center items-center">
+        <button onclick={saveQuizTemp} class="bg-blue-500 hover:bg-blue-700 m-auto inline text-white font-bold p-2 rounded cursor-pointer">Save Quiz</button>
+        <button onclick={exportQuiz} class="bg-blue-500 hover:bg-blue-700 m-auto inline text-white font-bold p-2 rounded cursor-pointer">Export Quiz</button>
+        <button onclick={clearQuiz} class="bg-blue-500 hover:bg-blue-700 m-auto inline text-white font-bold p-2 rounded cursor-pointer">Clear Quiz</button>
+    </div>
 {:else}
     <div class="flex flex-row m-5 justify-center items-center gap-5">
         <input type="file" id="jsonInput" accept=".WhatIsQuiz" onchange={quizUpload} class="hidden">
