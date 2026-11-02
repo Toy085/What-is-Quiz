@@ -60,7 +60,7 @@
 
   <div class="grid gap-2.5 justify-center grid-cols-[repeat(5,200px)]" id="gameBoard">
     {#each cells as index}
-      <button type="button" class="flex justify-center items-center cursor-pointer rounded-lg w-50 h-25 bg-blue-500 hover:bg-blue-700 hover:shadow transition-all ease-in-out delay-50" data-index={index} onclick={() => openCell(index, cellTypes.text)}>
+      <button type="button" class="flex justify-center items-center cursor-pointer rounded-lg w-50 h-25 bg-blue-600 hover:bg-blue-700 hover:shadow transition-all ease-in-out delay-50" data-index={index} onclick={() => openCell(index, cellTypes.text)}>
         <p class="text-xl font-normal text-white">
           ${(Math.floor(index / 5) + 1) * 100}
         </p>
