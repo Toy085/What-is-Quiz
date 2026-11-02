@@ -6,15 +6,15 @@
     let questionText = $state<string[]>(Array(25).fill(""));
     let creationMode: boolean = $state(false);
 
-    if (localStorage?.getItem('tempQuiz')) {
-        const tempQuiz = JSON.parse(localStorage.getItem('tempQuiz') || '{}');
+    if (localStorage?.getItem('localQuiz')) {
+        const tempQuiz = JSON.parse(localStorage.getItem('localQuiz') || '{}');
         categoriesText = tempQuiz.categoriesText || Array(5).fill("Lorem");
         questionText = tempQuiz.questionText || Array(25).fill("");
     }
 
     function saveQuizTemp() {
         const quizData = { categoriesText, questionText };
-        localStorage.setItem('tempQuiz', JSON.stringify(quizData));
+        localStorage.setItem('localQuiz', JSON.stringify(quizData));
     }
     function exportQuiz() {
         const quizData = { categoriesText, questionText };
