@@ -16,6 +16,7 @@
         const quizData = { categoriesText, questionText };
         localStorage.setItem('localQuiz', JSON.stringify(quizData));
     }
+
     function exportQuiz() {
         const quizData = { categoriesText, questionText };
         let tempQuiz = JSON.stringify(quizData);
@@ -23,7 +24,7 @@
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
-        a.download = 'quiz.json';
+        a.download = 'quiz.WhatIsQuiz';
         a.click();
         URL.revokeObjectURL(url);
     }
