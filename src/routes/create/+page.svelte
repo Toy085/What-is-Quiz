@@ -5,6 +5,7 @@
     let categoriesText = $state<string[]>(Array(5).fill("Lorem"));
     let questionText = $state<string[]>(Array(25).fill(""));
     let creationMode: boolean = $state(false);
+    let autoSaveQuiz: boolean = $state(true);
 
     if (localStorage?.getItem('localQuiz')) {
         const tempQuiz = JSON.parse(localStorage.getItem('localQuiz') || '{}');
@@ -15,7 +16,7 @@
     clearTimeout;
     setTimeout(autoSave, 10000);
     function autoSave() { 
-        if (creationMode) {
+        if (creationMode && autoSaveQuiz) {
             saveQuizTemp(); 
             console.log("Autosaved Quiz."); 
         } 
@@ -44,8 +45,18 @@
         console.error("No file selected");
     }
 
+    function saveQuiz() {
+        const quizData = { categoriesText, questionText };
+        localStorage.setItem('localQuiz', JSON.stringify(quizData));
+    }
     function saveQuizTemp() {
         const quizData = { categoriesText, questionText };
+        localStorage.setItem('tempQuiz', JSON.stringify(quizData));
+    }
+    function quizRetrieval() {
+        if (!window.confirm("Doing this will clear current quiz.")) {return;}
+        const quizData = JSON.parse(localStorage.getItem('tempQuiz') || '{}');
+        if (quizData === '{}') {return;}
         localStorage.setItem('localQuiz', JSON.stringify(quizData));
     }
 
@@ -75,9 +86,10 @@
 {#if creationMode}
     <Gameboard creation={true} bind:QuestionText={questionText} bind:CategoriesText={categoriesText} />
 
-    <div class="flex justify-center items-center">
-        <button onclick={saveQuizTemp} class="bg-blue-500 hover:bg-blue-700 m-auto inline text-white font-bold p-2 rounded cursor-pointer">Save Quiz</button>
+    <div class="flex justify-center items-center m-auto w-[85vw]">
+        <button onclick={saveQuiz} class="bg-blue-500 hover:bg-blue-700 m-auto inline text-white font-bold p-2 rounded cursor-pointer">Save Quiz</button>
         <button onclick={exportQuiz} class="bg-blue-500 hover:bg-blue-700 m-auto inline text-white font-bold p-2 rounded cursor-pointer">Export Quiz</button>
+        <button onclick={quizRetrieval} class="bg-blue-500 hover:bg-blue-700 m-auto inline text-white font-bold p-2 rounded cursor-pointer">Recover Quiz</button>
         <button onclick={clearQuiz} class="bg-white hover:bg-gray-200 m-auto inline text-red-700 font-bold p-2 rounded cursor-pointer">Clear Quiz</button>
     </div>
 {:else}
