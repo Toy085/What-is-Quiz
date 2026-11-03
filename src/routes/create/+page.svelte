@@ -17,8 +17,7 @@
     setTimeout(autoSave, 10000);
     function autoSave() { 
         if (creationMode && autoSaveQuiz) {
-            saveQuizTemp(); 
-            console.log("Autosaved Quiz."); 
+            saveQuizTemp();
         } 
         setTimeout(autoSave, 10000);
     }
@@ -49,6 +48,7 @@
         const quizData = { categoriesText, questionText };
         localStorage.setItem('localQuiz', JSON.stringify(quizData));
     }
+
     function saveQuizTemp() {
         const quizData = { categoriesText, questionText };
         localStorage.setItem('tempQuiz', JSON.stringify(quizData));
@@ -56,7 +56,6 @@
     function quizRetrieval() {
         if (!window.confirm("Doing this will clear current quiz.")) {return;}
         const quizData = JSON.parse(localStorage.getItem('tempQuiz') || '{}');
-        if (quizData === '{}') {return;}
         localStorage.setItem('localQuiz', JSON.stringify(quizData));
     }
 
