@@ -70,7 +70,7 @@
 </div>
 
 <!--Big Cell-->
-<div class="flex justify-center items-center rounded-lg w-[70vw] h-[60vh] transform-[translate(-50%,-50%)] absolute top-[40%] left-[50%] bg-blue-600 p-5" class:invisible={activeCell === null || currentCellType === cellTypes.title}>
+<div class="flex justify-center items-center rounded-lg w-[70vw] h-[35vw] shadow-2xl transform-[translate(-50%,-50%)] absolute top-[40%] left-[50%] bg-blue-600 p-5" class:invisible={activeCell === null || currentCellType === cellTypes.title}>
   {#if creation}
     <textarea maxlength="125" bind:value={QuestionText[activeCell != null ? activeCell : 0]} class="w-full h-full font-bold text-7xl text-center resize-none bg-transparent"></textarea>
     <button class="absolute top-0 right-0" onclick={() => closeEditCell()}>
@@ -82,7 +82,7 @@
 </div>
 
 <!--Big-small Cell-->
-<div class="flex justify-center items-center rounded-lg w-[60vw] h-[30vh] transform-[translate(-50%,-50%)] absolute top-[40%] left-[50%] bg-blue-800 p-5" class:invisible={activeCell === null || currentCellType === cellTypes.text}>
+<div class="flex justify-center items-center rounded-lg w-[60vw] h-[20vw] shadow-2xl transform-[translate(-50%,-50%)] absolute top-[40%] left-[50%] bg-blue-800 p-5" class:invisible={activeCell === null || currentCellType === cellTypes.text}>
   {#if creation}
     <textarea maxlength="40" bind:value={CategoriesText[activeCell != null ? activeCell : 0]} class="w-full h-[20vh] font-bold text-7xl text-center resize-none bg-transparent"></textarea>
     <button class="absolute top-0 right-0" onclick={() => closeEditCell()}>
