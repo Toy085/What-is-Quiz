@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { goto } from "$app/navigation";
+
     function quizUpload(event: Event) {
         const input = event.target as HTMLInputElement;
         if (input.files && input.files.length > 0) {
@@ -8,6 +10,7 @@
                 try {
                     const quizData = JSON.parse(e.target?.result as string);
                     localStorage.setItem('localQuiz', JSON.stringify(quizData));
+                    goto("/game");
                 } catch (error) {
                     console.error("Error parsing JSON:", error);
                     return error;
