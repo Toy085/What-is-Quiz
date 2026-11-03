@@ -12,6 +12,28 @@
         questionText = tempQuiz.questionText || Array(25).fill("");
     }
 
+    function quizUpload(event: Event) {
+        const input = event.target as HTMLInputElement;
+        if (input.files && input.files.length > 0) {
+            const file = input.files[0];
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const quizData = JSON.parse(e.target?.result as string);
+                    categoriesText = quizData.categoriesText || Array(5).fill("Lorem");
+                    questionText = quizData.questionText || Array(25).fill("");
+                    creationMode = true;
+                } catch (error) {
+                    console.error("Error parsing JSON:", error);
+                    return error;
+                }
+            };
+            reader.readAsText(file);
+            return;
+        }
+        console.error("No file selected");
+    }
+
     function saveQuizTemp() {
         const quizData = { categoriesText, questionText };
         localStorage.setItem('localQuiz', JSON.stringify(quizData));
@@ -28,6 +50,7 @@
         a.click();
         URL.revokeObjectURL(url);
     }
+
     function clearQuiz() {
         if(!window.confirm("Doing this will permantly delete your quiz.")) {return;}
         categoriesText = Array(5).fill("Lorem");
