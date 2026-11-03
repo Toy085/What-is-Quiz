@@ -1,6 +1,22 @@
 <script lang="ts">
-    function quizUpload() {
-        //localStorage.setItem('localQuiz', JSON.stringify(""));
+    function quizUpload(event: Event) {
+        const input = event.target as HTMLInputElement;
+        if (input.files && input.files.length > 0) {
+            const file = input.files[0];
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const quizData = JSON.parse(e.target?.result as string);
+                    localStorage.setItem('localQuiz', JSON.stringify(quizData));
+                } catch (error) {
+                    console.error("Error parsing JSON:", error);
+                    return error;
+                }
+            };
+            reader.readAsText(file);
+            return;
+        }
+        console.error("No file selected");
     }
 </script>
 
