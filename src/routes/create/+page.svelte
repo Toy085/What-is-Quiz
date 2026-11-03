@@ -11,6 +11,16 @@
         categoriesText = tempQuiz.categoriesText || Array(5).fill("Lorem");
         questionText = tempQuiz.questionText || Array(25).fill("");
     }
+    
+    clearTimeout;
+    setTimeout(autoSave, 10000);
+    function autoSave() { 
+        if (creationMode) {
+            saveQuizTemp(); 
+            console.log("Autosaved Quiz."); 
+        } 
+        setTimeout(autoSave, 10000);
+    }
 
     function quizUpload(event: Event) {
         const input = event.target as HTMLInputElement;
