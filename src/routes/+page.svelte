@@ -10,7 +10,7 @@
                 try {
                     const quizData = JSON.parse(e.target?.result as string);
                     localStorage.setItem('localQuiz', JSON.stringify(quizData));
-                    goto("/game");
+                    goto("/host");
                 } catch (error) {
                     console.error("Error parsing JSON:", error);
                     return error;
